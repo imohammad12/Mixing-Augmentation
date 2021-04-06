@@ -9,7 +9,7 @@ In the Loading Data section change download to Ture to download the CIFAR-10 tra
 
 To start/resume training run Train the Model section.  Use train_normal function to train the model normally. Remember to (set advs_train to false)
 
-For training using the mixing method you should use train_mixup method. Set advs_train to false to train a vanilla linear mixup model without adversarial noise in data.
+For training using the mixing method you should use train_mixup function. Set advs_train to false to train a vanilla linear mixup model without adversarial noise in data.
 
 The rest of the code is for Robustness Evaluation so you can simply discard it.
 
