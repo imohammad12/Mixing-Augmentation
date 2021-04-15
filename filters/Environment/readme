@@ -1,0 +1,13 @@
+This modeule performs augmentation for the images with respect to it's environment. 
+
+Conditions like fog and rain control the visibility of the image to a great extent. Road augmentation techniques involve the addition of gravel, presence of manholes,
+speed of the object, shadows casted by the object etc. With respect to weather, there are a lot of other parameters to consider like different seasons: autumn, spring, 
+snow, and multiple brightness levels like full bright, partial sunflare and night time. These are some of the augmentation scenarios considered while performing 
+environmental augmentations for this research project. The intensity of each parameter can be fine-tuned manually; an automated tuning has also also built into this project.
+
+For each augmentation type, a skeleton of steps are followed. First, the region of interest (classifcation object) is identified, then depending upon the requirement 
+of the augmentation, the HSB (hue, saturation and brightness) and RGB (red,blue, green) parameters are modified on the region of interest (ROI) or around the ROI. 
+For example, to augment the season of autumn, the object must be identified and then from the surrounding (outside ROI) other prominent objects are considered to 
+perfrom ‘225’ R scale value in RGB. The build is capable of applying random augmentation techniques to the training set.
+
+Enjoy augmenting the images with subject to it's nature!!!
