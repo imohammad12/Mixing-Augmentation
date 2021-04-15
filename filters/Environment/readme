@@ -1,4 +1,4 @@
-This modeule performs augmentation for the images with respect to it's environment. 
+This module performs augmentation for the images with respect to it's environment. 
 
 Conditions like fog and rain control the visibility of the image to a great extent. Road augmentation techniques involve the addition of gravel, presence of manholes,
 speed of the object, shadows casted by the object etc. With respect to weather, there are a lot of other parameters to consider like different seasons: autumn, spring, 
