@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [1, 0.5, 0])/rgb[...,:3].sum(2)
@@ -15,7 +16,7 @@ def get_mask_filter(img):
   
 def get_pre_image(orig_img):
   pre_images = orig_img#.permute(0,2,3,1)
-  print(pre_images.shape)
+#   print(pre_images.shape)
   # plt.imshow(pre_images[0])
   # plt.show()
   return pre_images
@@ -27,12 +28,12 @@ def attention_mask_filter(image_batch,payload,showImage=-1):
     mean= [-m/s for m, s in zip(mean, std)],
     std= [1/s for s in std]
   )
-  inv_tensor = inv_normalize(image_batch)*255
+  inv_tensor = (inv_normalize(image_batch)*255).to(device)
   pre_image = get_pre_image(image_batch)
   outputs, probs, preds = payload['model'].generate_image(pre_image, color=True)
   filters = np.array(list(map(get_mask_filter,outputs)))#np.array([attention,attention,attention]).transpose(1,2,0)
-  inv_tensor = inv_tensor.permute(0,2,3,1)
-  filtered_image = torch.from_numpy(filters)*inv_tensor
+  inv_tensor = (inv_tensor.permute(0,2,3,1)).to(device)
+  filtered_image = torch.from_numpy(filters).to(device) * inv_tensor
   if showImage!=-1:
     fig, ax = plt.subplots(nrows=1, ncols=3)
     ax[0].imshow(np.array(inv_tensor[showImage]).astype('uint8'))

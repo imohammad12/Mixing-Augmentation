@@ -9,8 +9,10 @@ from tqdm import tqdm
 from collections import OrderedDict
 from functools import partial
 
-from utils import rescale_image, resize_image, save_saliency_map
-from models import SimpleCNNDeconv
+
+from .. import utils
+from ..utils import rescale_image, resize_image, save_saliency_map
+from ..models import SimpleCNNDeconv
 
 
 class ConvOutput(object):
@@ -320,14 +322,13 @@ class CAM(object):
 
         # convert target type to LongTensor
         # targets = torch.LongTensor(targets)
-
         # prediction
         pre_imgs = Variable(pre_imgs, requires_grad=True)
         outputs = self.model(pre_imgs)
         probs, preds = outputs.detach().max(1)
 
         # last layer output
-        last_layer_output = self.conv_outputs[layer].detach().numpy() # (B, C, H, W)
+        last_layer_output = self.conv_outputs[layer].detach().cpu().numpy() # (B, C, H, W)
 
         # w_k 
         # w_k = self.model.cam_mlp.mlp[0].weight.detach().numpy() # (nb_class, C)
@@ -346,7 +347,7 @@ class CAM(object):
         colors = [color] * cams.shape[0]
         cams = np.array(list(map(resize_image, cams, pre_imgs, colors)))
 
-        return (cams, probs.numpy(), preds.numpy())
+        return (cams, probs.cpu().numpy(), preds.cpu().numpy())
 
     def save(self, dataloader, save_dir, **kwargs):
         save_saliency_map(self.generate_image, dataloader, save_dir, 'CAM', **kwargs)
