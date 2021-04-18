@@ -13,7 +13,7 @@ import h5py
 from tqdm import tqdm
 
 from .dataload import mnist_load, cifar10_load
-from .models import SimpleCNN, RAN, WideResNetAttention
+from .models_attention import SimpleCNN, RAN, WideResNetAttention
 
 def seed_everything(seed=223):
     random.seed(seed)

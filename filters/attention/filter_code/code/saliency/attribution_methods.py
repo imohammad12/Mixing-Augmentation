@@ -12,7 +12,7 @@ from functools import partial
 
 from .. import utils
 from ..utils import rescale_image, resize_image, save_saliency_map
-from ..models import SimpleCNNDeconv
+from ..models_attention import SimpleCNNDeconv
 
 
 class ConvOutput(object):
