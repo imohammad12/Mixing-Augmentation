@@ -3,6 +3,9 @@
 <br>
 
 ## P R O J E C T &nbsp;&nbsp;&nbsp; O V E R V I E W
+
+You can find the complete report here: https://drive.google.com/file/d/15UOpucwdgoAsiyRUbjOJuQsKPSU0yyGs/view
+
   In this section, we discuss the architecture of the Defensive Adversarial Mix-Up (DAM) Neural Network and the individual components that make this technique novel. Image  filters,  image  Mix-Up,  and  Defensive  Adversarial Mix-up are the three main components of the DAMN strategy. The below figure depicts the DAM technique’s modular architecture. 
 
 <p align="center"><img src="https://github.com/imohammad12/Mixing-Augmentation/blob/main/CS698_Architecture.png" width="500" height="600"></p> 
